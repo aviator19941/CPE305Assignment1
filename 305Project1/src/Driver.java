@@ -58,8 +58,9 @@ public class Driver {
 		return yCoordStart;
 	}
 	
-	public void acceptRequest(Passenger p) {
-		if (this.isAvailableDriver()) {
+	// check distance from passenger
+	public void acceptRequest(Passenger p, Grid grid, Trip trip) {
+		if (p.sendRequest(grid) && this.isAvailableDriver()) {
 			pQueue.add(this);
 		}
 	}
