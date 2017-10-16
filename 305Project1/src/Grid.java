@@ -27,27 +27,18 @@ public class Grid {
 		return this.size;
 	}
 	
-	public static void main(String[] args) {
-		int numDrivers = 3;
-		int numPassengers = 2;
-		Grid grid = new Grid(5);
-		
-		for (int i = 0; i < numDrivers; i++) {
-			grid.generateRandomDriver();
-		}
-		
-		for (int j = 0; j < numPassengers; j++) {
-			grid.generateRandomPassenger();
-		}
-		
-		for (int a = 0; a < grid.map.length; a++) {
-			for (int b = 0; b < grid.map[a].length; b++) {
-				System.out.print(grid.map[a][b] + " ");
-			}
-			System.out.println();
-		}
-		
-		
+	// get xCoord and yCoord of closest driver and move driver (1) to passenger's destination
+	public void moveDriver(Driver driver) {
+		int newRow = driver.getXCoord();
+		int newCol = driver.getYCoord();
+		map[newRow][newCol] = 1;
 	}
-
+	
+	// get xCoord and yCoord of passenger and move passenger (2) to passenger's destination
+	public void movePassenger(Passenger pass) {
+		int newRow = pass.getXCoordDest();
+		int newCol = pass.getYCoordDest();
+		map[newRow][newCol] = 2;
+	}
+	
 }

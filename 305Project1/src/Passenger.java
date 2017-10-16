@@ -6,6 +6,7 @@ public class Passenger {
 	private int yCoord;
 	private int xCoordDest;
 	private int yCoordDest;
+	private static int numRatings = 0;
 	
 	public Passenger(String name, double balance, int xCoord, int yCoord) {
 		this.name = name;
@@ -20,6 +21,10 @@ public class Passenger {
 	
 	public double getCustBalance() {
 		return balance;
+	}
+	
+	public void setCustBalance(double balance) {
+		this.balance = balance;
 	}
 	
 	public int getXCoord() {
@@ -47,16 +52,10 @@ public class Passenger {
 		return (grid.getSizeOfGrid() - 1 >= this.xCoordDest) && (grid.getSizeOfGrid() - 1 >= this.yCoordDest);
 	}
 	
-	public boolean sendRequest(Grid grid) {
-		if (this.isValidDest(grid)) {
-			return true;
-		}
-		return false;
-	}
-	
 	public double enterRating(Driver driver, double newRating) {
 		double curRating = driver.getRating();
-		double retRating = curRating + ((newRating - curRating) / driver.getNumRatings() + 1);
+		numRatings++;
+		double retRating = curRating + ((newRating - curRating) / numRatings);
 		return retRating;
 	}
 }
