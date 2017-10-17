@@ -10,6 +10,7 @@ public class Driver implements Comparable<Driver>{
 	private int xCoordEnd;
 	private int yCoordEnd;
 	private double rating;
+	private Trip trip;
 	private PriorityQueue<Driver> pQueue;
 	
 	public Driver(String name, double balance, String carTitle, boolean status, double rating) {
@@ -17,14 +18,15 @@ public class Driver implements Comparable<Driver>{
 		this.balance = balance;
 		this.carTitle = carTitle;
 		this.status = status;
-		rating = 0.0;
+		this.rating = rating;
+		pQueue = new PriorityQueue<Driver>();
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public double balance() {
+	public double getBalance() {
 		return balance;
 	}
 	
@@ -52,35 +54,71 @@ public class Driver implements Comparable<Driver>{
 		this.rating = rating;
 	}
 	
-	public boolean isAvailableDriver() {
-		return status == true;
+	public void setXCoordStart(int xCoordStart) {
+		this.xCoordStart = xCoordStart;
 	}
 	
-	public int getXCoord() {
+	public int getXCoordStart() {
 		return xCoordStart;
 	}
 	
-	public int getYCoord() {
+	public void setYCoordStart(int yCoordStart) {
+		this.yCoordStart = yCoordStart;
+	}
+	
+	public int getYCoordStart() {
 		return yCoordStart;
+	}
+	
+	public int getXCoordEnd() {
+		return xCoordEnd;
 	}
 	
 	public void setXCoordEnd(int xCoordEnd) {
 		this.xCoordEnd = xCoordEnd;
 	}
 	
+	public int getYCoordEnd() {
+		return yCoordEnd;
+	}
+	
 	public void setYCoordEnd(int yCoordEnd) {
 		this.yCoordEnd = yCoordEnd;
 	}
 	
-	// check distance from passenger
-	public void addDriverToQueue(Passenger p, Grid grid, Trip trip) {
-		if (p.isValidDest(grid) && this.isAvailableDriver()) {
-			pQueue.add(this);
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+	
+	public int compareTo(Driver other) {
+		if (this.trip.distanceFromDriverToPass() == other.trip.distanceFromDriverToPass()) {
+			if (this.getRating() < other.getRating()) {
+				return 1;
+			}
+			else if (this.getRating() > other.getRating()) {
+
+				return -1;
+			}
+			else {
+				return 0;
+			}
+		}
+		else if (this.trip.distanceFromDriverToPass() > other.trip.distanceFromDriverToPass()) {
+			return 1;
+		}
+		else {
+			return -1;
 		}
 	}
 	
-	public PriorityQueue<Driver> getDrivers() {
-		return this.pQueue;
+	public String toString() {
+		//return "Name: " + name + " balance: " + balance + " carTitle: " + carTitle + " status: " + status + " rating: " + rating;
+		return name;
 	}
+	
+	public void decline() {
+		this.status = false;
+	}
+	
 	
 }

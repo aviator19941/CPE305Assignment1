@@ -2,35 +2,47 @@ import java.util.*;
 
 public class Trip {
 	private double rate;
+	private Driver driver;
+	private Passenger pass;
 	
-	public Trip(double rate) {
+	public Trip(double rate, Driver driver, Passenger pass) {
 		this.rate = rate;
+		this.driver = driver;
+		this.pass = pass;
 	}
 	
 	public double getRate() {
 		return rate;
 	}
 	
-	public double distanceFromDriverToPass(Driver driver, Passenger pass) {
-		int xDiff = driver.getXCoord() - pass.getXCoord();
-		int yDiff = driver.getYCoord() - pass.getYCoord();
+	public Driver getDriver() {
+		return driver;
+	}
+	
+	public Passenger getPassenger() {
+		return pass;
+	}
+	
+	public double distanceFromDriverToPass() {
+		int xDiff = Math.abs(driver.getXCoordStart() - pass.getXCoordStart());
+		int yDiff = Math.abs(driver.getYCoordStart() - pass.getYCoordStart());
 		return Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 	}
 	
-	public double distanceFromPassToDest(Passenger pass) {
-		int xDiff = pass.getXCoordDest() - pass.getXCoord();
-		int yDiff = pass.getYCoordDest() - pass.getYCoord();
+	public double distanceFromPassToDest() {
+		int xDiff = Math.abs(pass.getXCoordDest() - pass.getXCoordStart());
+		int yDiff = Math.abs(pass.getYCoordDest() - pass.getYCoordStart());
 		return Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 	}
 	
 	// 3 min per unit
-	public int estimatedTimeArrival(Driver driver, Passenger pass) {
-		return (int)this.distanceFromDriverToPass(driver, pass) * 3;
+	public int estimatedTimeArrival() {
+		return (int)this.distanceFromDriverToPass() * 3;
 	}
 	
 	// get rate from input file
-	public double calculateFare(Passenger pass) {
-		return this.distanceFromPassToDest(pass) * rate;
+	public double calculateFare() {
+		return this.distanceFromPassToDest() * rate;
 	}
 	
 }
