@@ -10,16 +10,16 @@ public class Driver implements Comparable<Driver>{
 	private int xCoordEnd;
 	private int yCoordEnd;
 	private double rating;
+	private int numRatings;
 	private Trip trip;
-	private PriorityQueue<Driver> pQueue;
 	
-	public Driver(String name, double balance, String carTitle, boolean status, double rating) {
+	public Driver(String name, double balance, String carTitle, boolean status, double rating, int numRatings) {
 		this.name = name;
 		this.balance = balance;
 		this.carTitle = carTitle;
 		this.status = status;
 		this.rating = rating;
-		pQueue = new PriorityQueue<Driver>();
+		this.numRatings = numRatings;
 	}
 	
 	public String getName() {
@@ -90,6 +90,10 @@ public class Driver implements Comparable<Driver>{
 		this.trip = trip;
 	}
 	
+	public int getNumRatings() {
+		return this.numRatings;
+	}
+	
 	public int compareTo(Driver other) {
 		if (this.trip.distanceFromDriverToPass() == other.trip.distanceFromDriverToPass()) {
 			if (this.getRating() < other.getRating()) {
@@ -108,6 +112,15 @@ public class Driver implements Comparable<Driver>{
 		}
 		else {
 			return -1;
+		}
+	}
+	
+	public void addDriverToQueue(PriorityQueue<Driver> drivers, Driver driver) {
+		if (driver.status == false) {
+			System.out.println("Busy! Cannot add to queue");
+		}
+		else {
+			drivers.add(driver);
 		}
 	}
 	

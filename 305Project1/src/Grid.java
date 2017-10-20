@@ -1,7 +1,10 @@
+import java.util.*;
 
 public class Grid {
 	private Object[][] map;
 	private int size;
+	private ArrayList<Passenger> passengers;
+	private ArrayList<Driver> drivers;
 	
 	// Change to 300*300 grid
 	public Grid(int size) {
@@ -12,6 +15,8 @@ public class Grid {
 				map[i][j] = 0;
 			}
 		}
+		passengers = new ArrayList<Passenger>();
+		drivers = new ArrayList<Driver>();
 	}
 	
 	public void generateRandomDriver(Driver driver) {
@@ -54,6 +59,34 @@ public class Grid {
 		int newCol = pass.getYCoordDest();
 		System.out.println("New coords: " + newRow + ", " + newCol);
 		map[newRow][newCol] = pass;
+	}
+	
+	public void addPassengers() {
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				if (map[i][j] instanceof Passenger) {
+					passengers.add((Passenger)map[i][j]);
+				}
+			}
+		}
+	}
+	
+	public void addDrivers() {
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				if (map[i][j] instanceof Driver) {
+					drivers.add((Driver)map[i][j]);
+				}
+			}
+		}
+	}
+	
+	public ArrayList<Passenger> getPassengers() {
+		return passengers;
+	}
+	
+	public ArrayList<Driver> getDrivers() {
+		return drivers;
 	}
 	
 	public void printGrid() {

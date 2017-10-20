@@ -6,7 +6,6 @@ public class Passenger {
 	private int yCoordStart;
 	private int xCoordDest;
 	private int yCoordDest;
-	private static int numRatings = 0;
 	
 	public Passenger(String name, double balance) {
 		this.name = name;
@@ -49,19 +48,23 @@ public class Passenger {
 		return yCoordDest;
 	}
 	
-	public void enterDestination(int xCoordDest, int yCoordDest) {
-		this.xCoordDest = xCoordDest;
-		this.yCoordDest = yCoordDest;
+	public void enterDestination(Grid grid, int xCoordDest, int yCoordDest) {
+		if (isValidDest(grid, xCoordDest, yCoordDest)) {
+			System.out.println("Valid coords");
+			this.xCoordDest = xCoordDest;
+			this.yCoordDest = yCoordDest;
+		}
 	}
 	
-	public boolean isValidDest(Grid grid) {
-		return (grid.getSizeOfGrid() - 1 >= this.xCoordDest) && (grid.getSizeOfGrid() - 1 >= this.yCoordDest);
+	public boolean isValidDest(Grid grid, int xCoordDest, int yCoordDest) {
+		return (grid.getSizeOfGrid() - 1 >= xCoordDest) && (grid.getSizeOfGrid() - 1 >= yCoordDest);
 	}
 	
 	public double enterRating(Driver driver, double newRating) {
 		double curRating = driver.getRating();
-		numRatings++;
-		double retRating = curRating + ((newRating - curRating) / numRatings);
+		System.out.println("curRating is: " + curRating);
+		double retRating = curRating + ((newRating - curRating) / (driver.getNumRatings() + 1));
+		System.out.println("retRating is: " + retRating);
 		return retRating;
 	}
 	

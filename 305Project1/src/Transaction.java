@@ -33,7 +33,7 @@ public class Transaction {
 		if (this.checkPassengerBalance()) {
 			numTransactions++;
 			double balance = pass.getCustBalance() - trip.calculateFare();
-			System.out.println("Passenger pays: $" + trip.calculateFare());
+			System.out.printf("Passenger pays: $%.2f\n", trip.calculateFare());
 			pass.setCustBalance(balance);
 		}
 	}
@@ -42,7 +42,7 @@ public class Transaction {
 	public void addToDriverBalance() {
 		if (this.checkPassengerBalance()) {
 			double newBalance = trip.calculateFare() * 0.75;
-			System.out.println("Driver earns: $" + newBalance);
+			System.out.printf("Driver earns: $%.2f\n", newBalance);
 			driver.setBalance(newBalance);
 		}
 	}
