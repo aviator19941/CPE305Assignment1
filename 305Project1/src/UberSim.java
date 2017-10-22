@@ -17,8 +17,7 @@ public class UberSim {
 			double passBalance = Double.parseDouble(list.get(1));
 			double rate = Double.parseDouble(list.get(2));
 			
-			//Grid grid = new Grid(300);
-			Grid grid = new Grid(5);
+			Grid grid = new Grid(300);
 			
 			Passenger pass1 = new Passenger("P1", passBalance);
 			Passenger pass2 = new Passenger("P2", passBalance);
@@ -28,9 +27,9 @@ public class UberSim {
 
 			grid.generateRandomPassenger(pass1);
 			grid.generateRandomPassenger(pass2);
-			/*grid.generateRandomPassenger(pass3);
+			grid.generateRandomPassenger(pass3);
 			grid.generateRandomPassenger(pass4);
-			grid.generateRandomPassenger(pass5);*/
+			grid.generateRandomPassenger(pass5);
 			
 			Driver driver1 = new Driver("D1", driverBalance, "Sedan", true, 3.0, 1);
 			Driver driver2 = new Driver("D2", driverBalance, "UberX", true, 4.0, 1);
@@ -42,15 +41,10 @@ public class UberSim {
 			Driver driver8 = new Driver("D8", driverBalance, "Lamborghini", true, 0.0, 1);
 			Driver driver9 = new Driver("D9", driverBalance, "Ferrari", true, 4.0, 1);
 			Driver driver10 = new Driver("D10", driverBalance, "Sedan", true, 4.0, 1);
-			Driver driver11 = new Driver("D11", driverBalance, "UberX", true, 4.5, 1);
-			Driver driver12 = new Driver("D12", driverBalance, "Honda", true, 4.6, 1);
-			Driver driver13 = new Driver("D13", driverBalance, "Acura", true, 4.6, 1);
-			Driver driver14 = new Driver("D14", driverBalance, "UberX", true, 4.5, 1);
-			Driver driver15 = new Driver("D15", driverBalance, "UberX", true, 4.5, 1);
 			
 			grid.generateRandomDriver(driver1);
 			grid.generateRandomDriver(driver2);
-			/*grid.generateRandomDriver(driver3);
+			grid.generateRandomDriver(driver3);
 			grid.generateRandomDriver(driver4);
 			grid.generateRandomDriver(driver5);
 			grid.generateRandomDriver(driver6);
@@ -58,11 +52,6 @@ public class UberSim {
 			grid.generateRandomDriver(driver8);
 			grid.generateRandomDriver(driver9);
 			grid.generateRandomDriver(driver10);
-			grid.generateRandomDriver(driver11);
-			grid.generateRandomDriver(driver12);
-			grid.generateRandomDriver(driver13);
-			grid.generateRandomDriver(driver14);
-			grid.generateRandomDriver(driver15);*/
 			
 			grid.printGrid();
 			grid.addPassengers();
