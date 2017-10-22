@@ -1,0 +1,9 @@
+0ff5739 (HEAD -> master, origin/master) Finished Javadocs and Unit Testing
+5f8dd1f Create 5 random trips with 5 random passengers and 10 random drivers
+62b5279 Finished producing JSON file and final output file
+0b734e1 Created addDriverToQueue method to check for valid status and checked passenger's entered coords
+9bcf042 Started testing functionality
+e150b88 Simplified model and added most of functionality
+d0f2d0c Calculate distance values between Drivers, Passengers, and destinations
+bbfa90a Tested Grid class and added size of grid method
+e6f4790 Initial design of Simplified Uber
