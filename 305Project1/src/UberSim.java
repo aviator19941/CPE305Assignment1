@@ -1,7 +1,21 @@
 import java.util.*;
 import java.io.*;
-
+/**
+ * A class to simulate 5 trips with a Simplified Uber model
+ * @author Avinash Sharma
+ *
+ */
 public class UberSim {
+	private static int successCount = 0;
+	private static int cancelledCount = 0;
+	private static int numTransactions = 0;
+	
+	/**
+	 * Read the initial values from the input.txt file and create a Grid with
+	 * 5 random Passengers and 10 random Drivers and simulate 5 trips. 
+	 * Writes the final values to a text file.
+	 * @param args input arguments (none)
+	 */
 	public static void main(String[] args) {
 		try {
 			File file = new File("input.txt");
@@ -53,7 +67,7 @@ public class UberSim {
 			grid.generateRandomDriver(driver9);
 			grid.generateRandomDriver(driver10);
 			
-			grid.printGrid();
+			//grid.printGrid();
 			grid.addPassengers();
 			grid.addDrivers();
 			ArrayList<Passenger> passengersList = grid.getPassengers();
@@ -92,12 +106,24 @@ public class UberSim {
 		}
 	}
 	
+	/**
+	 * Adds all drivers in the List of Drivers to the PriorityQueue
+	 * @param pQueue the PriorityQueue of Drivers
+	 * @param driversList the List of all Drivers
+	 */
 	public static void addDriversToQueue(PriorityQueue<Driver> pQueue, ArrayList<Driver> driversList) {
 		for (int i = 0; i < driversList.size(); i++) {
 			driversList.get(i).addDriverToQueue(pQueue, driversList.get(i));
 		}
 	}
 	
+	/**
+	 * Creates a List of Trips for each Driver with the current Passenger
+	 * @param driversList the List of all Drivers
+	 * @param rate the specified rate from the input file
+	 * @param pass the current Passenger
+	 * @return the List of Trips created
+	 */
 	public static ArrayList<Trip> makeListOfTrips(ArrayList<Driver> driversList, double rate, Passenger pass) {
 		ArrayList<Trip> tripsList = new ArrayList<Trip>();
 		for (int i = 0; i < driversList.size(); i++) {
@@ -106,10 +132,19 @@ public class UberSim {
 		}
 		return tripsList;
 	}
-	private static int successCount = 0;
-	private static int cancelledCount = 0;
-	private static int numTransactions = 0;
-	private static int numRatings = 0;
+	
+	/**
+	 * Tests one trip at a time between all Drivers and a Passenger
+	 * @param grid the current grid
+	 * @param passengersList the List of all current Passengers
+	 * @param driversList the List of all Drivers
+	 * @param xCoordDest the xCoordDest of the current Passenger
+	 * @param yCoordDest the yCoordDest of the current Passenger
+	 * @param pass the current Passenger
+	 * @param rate the specified rate from the input file
+	 * @param fw the FileWriter to create a JSON file of the current trip
+	 * @param j The value used to format the last trip of the JSON file correctly
+	 */
 	public static void testTrips(Grid grid, ArrayList<Passenger> passengersList, ArrayList<Driver> driversList, 
 			int xCoordDest, int yCoordDest, Passenger pass, double rate, FileWriter fw, int j) {
 		try {
@@ -184,7 +219,7 @@ public class UberSim {
 					fw.write("\t\"" + passengersList.get(i).getName() + "Balance\": " + passengersList.get(i).getCustBalance() + ",\n");
 				}
 				
-				grid.printGrid();
+				//grid.printGrid();
 				System.out.println("Ride is finished");
 			
 				pass.enterRating(frontOfQueue, 4.47);

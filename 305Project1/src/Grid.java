@@ -1,12 +1,20 @@
 import java.util.*;
 
+/**
+ * Class to initialize a Grid with randomly placed passengers and drivers
+ * @author Avinash Sharma
+ *
+ */
 public class Grid {
 	private Object[][] map;
 	private int size;
 	private ArrayList<Passenger> passengers;
 	private ArrayList<Driver> drivers;
 	
-	// Change to 300*300 grid
+	/**
+	 * Constructs the size*size grid of Objects to store Passengers and Drivers
+	 * @param size the size of the grid to initialize
+	 */
 	public Grid(int size) {
 		this.size = size;
 		map = new Object[size][size];
@@ -19,6 +27,11 @@ public class Grid {
 		drivers = new ArrayList<Driver>();
 	}
 	
+	/**
+	 * Initializes a driver at a random location. If the random location already is occupied, it takes the
+	 * spot next to it
+	 * @param driver the driver to give the random location to
+	 */
 	public void generateRandomDriver(Driver driver) {
 		int row = (int) Math.floor(Math.random() * this.size);
 		int col = (int) Math.floor(Math.random() * this.size);
@@ -41,6 +54,11 @@ public class Grid {
 		}
 	}
 	
+	/**
+	 * Initializes a passenger at a random location. If the random location already is occupied, it takes the
+	 * spot next to it
+	 * @param pass the passenger to give the random location to
+	 */
 	public void generateRandomPassenger(Passenger pass) {
 		int row = (int) Math.floor(Math.random() * this.size);
 		int col = (int) Math.floor(Math.random() * this.size);
@@ -63,11 +81,18 @@ public class Grid {
 		}
 	}
 	
+	/**
+	 * Gets the size of the grid
+	 * @return the size of the grid
+	 */
 	public int getSizeOfGrid() {
 		return this.size;
 	}
 	
-	// get xCoord and yCoord of closest driver and move driver to passenger's destination
+	/**
+	 * Get the xCoord and yCoord of closest driver and move driver to passenger's destination
+	 * @param driver the closest driver to the current passenger
+	 */
 	public void moveDriver(Driver driver) {
 		int oldRow = driver.getXCoordStart();
 		int oldCol = driver.getYCoordStart();
@@ -83,7 +108,10 @@ public class Grid {
 		map[newRow][newCol] = newDriver;
 	}
 	
-	// get xCoord and yCoord of passenger and move passenger to passenger's destination
+	/**
+	 * Gets the xCoord and yCoord of the current passenger and move passenger to passenger's destination
+	 * @param pass the current passenger
+	 */
 	public void movePassenger(Passenger pass) {
 		int oldRow = pass.getXCoordStart();
 		int oldCol = pass.getYCoordStart();
@@ -98,6 +126,9 @@ public class Grid {
 		map[newRow][newCol] = newPass;
 	}
 	
+	/**
+	 * Adds all Passengers in the Grid to an ArrayList of Passengers
+	 */
 	public void addPassengers() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -108,6 +139,9 @@ public class Grid {
 		}
 	}
 	
+	/**
+	 * Adds all Drivers in the Grid to an ArrayList of Drivers
+	 */
 	public void addDrivers() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -118,14 +152,25 @@ public class Grid {
 		}
 	}
 	
+	/**
+	 * Gets the ArrayList of Passengers
+	 * @return the ArrayList of Passengers
+	 */
 	public ArrayList<Passenger> getPassengers() {
 		return passengers;
 	}
 	
+	/**
+	 * Gets the ArrayList of Drivers
+	 * @return the ArrayList of Drivers
+	 */
 	public ArrayList<Driver> getDrivers() {
 		return drivers;
 	}
 	
+	/**
+	 * Prints the grid's contents
+	 */
 	public void printGrid() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -136,6 +181,10 @@ public class Grid {
 		System.out.println();
 	}
 	
+	/**
+	 * Stores the grid into a String to be able to write it to a file
+	 * @return the grid in String version
+	 */
 	public String stringGrid() {
 		String retStr = "";
 		for (int i = 0; i < map.length; i++) {
