@@ -36,8 +36,8 @@ public class Trip {
 	}
 	
 	// 3 min per unit
-	public int estimatedTimeArrival() {
-		return (int)this.distanceFromDriverToPass() * 3;
+	public double estimatedTimeArrival() {
+		return this.distanceFromDriverToPass() * 1;
 	}
 	
 	// get rate from input file

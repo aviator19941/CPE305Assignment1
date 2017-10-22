@@ -44,13 +44,20 @@ public class Passenger {
 		return xCoordDest;
 	}
 	
+	public void setXCoordDest(int xCoordDest) {
+		this.xCoordDest = xCoordDest;
+	}
+	
 	public int getYCoordDest() {
 		return yCoordDest;
 	}
 	
+	public void setYCoordDest(int yCoordDest) {
+		this.yCoordDest = yCoordDest;
+	}
+	
 	public void enterDestination(Grid grid, int xCoordDest, int yCoordDest) {
 		if (isValidDest(grid, xCoordDest, yCoordDest)) {
-			System.out.println("Valid coords");
 			this.xCoordDest = xCoordDest;
 			this.yCoordDest = yCoordDest;
 		}
@@ -60,12 +67,19 @@ public class Passenger {
 		return (grid.getSizeOfGrid() - 1 >= xCoordDest) && (grid.getSizeOfGrid() - 1 >= yCoordDest);
 	}
 	
-	public double enterRating(Driver driver, double newRating) {
+	public void enterRating(Driver driver, double newRating) {
+		driver.setStatus(true);
 		double curRating = driver.getRating();
-		System.out.println("curRating is: " + curRating);
-		double retRating = curRating + ((newRating - curRating) / (driver.getNumRatings() + 1));
-		System.out.println("retRating is: " + retRating);
-		return retRating;
+		int numRatings = driver.getNumRatings();
+		driver.incNumRatings();
+		System.out.println("Set numRatings: " + driver.getNumRatings());
+		System.out.println("curRating: " + curRating);
+		double retRating = curRating + ((newRating - curRating) / (driver.getNumRatings()));
+		//return retRating;
+		System.out.println("Rating set to: " + retRating);
+		driver.setRating(retRating);
+		driver.setNumRatingsToCurrent(driver, driver.getNumRatings());
+		//driver.setNumRatingsZero();
 	}
 	
 	public String toString() {

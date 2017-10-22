@@ -10,7 +10,7 @@ public class Driver implements Comparable<Driver>{
 	private int xCoordEnd;
 	private int yCoordEnd;
 	private double rating;
-	private int numRatings;
+	private static int numRatings = 0;
 	private Trip trip;
 	
 	public Driver(String name, double balance, String carTitle, boolean status, double rating, int numRatings) {
@@ -24,6 +24,10 @@ public class Driver implements Comparable<Driver>{
 	
 	public String getName() {
 		return name;
+	}
+	
+	public static void setNumRatingsToCurrent(Driver driver, int numRatings) {
+		numRatings = driver.getNumRatings();
 	}
 	
 	public double getBalance() {
@@ -52,6 +56,10 @@ public class Driver implements Comparable<Driver>{
 	
 	public void setRating(double rating) {
 		this.rating = rating;
+	}
+	
+	public void incNumRatings() {
+		this.numRatings++;
 	}
 	
 	public void setXCoordStart(int xCoordStart) {
@@ -90,8 +98,8 @@ public class Driver implements Comparable<Driver>{
 		this.trip = trip;
 	}
 	
-	public int getNumRatings() {
-		return this.numRatings;
+	public static int getNumRatings() {
+		return numRatings;
 	}
 	
 	public int compareTo(Driver other) {

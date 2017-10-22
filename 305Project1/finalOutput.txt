@@ -1,0 +1,13 @@
+Number of successful trips: 2
+Number of cancelled trips: 0
+0  0  0  0  0  
+0  0  0  0  0  
+D1  0  0  0  0  
+0  0  0  0  0  
+0  0  0  0  0  
+
+Total number of transactions: 2
+D1 balance is: $10.06
+P1 balance is: $95.53
+P2 balance is: $91.06
+D1 ratings are: 3.0

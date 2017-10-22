@@ -1,0 +1,28 @@
+{
+	"fare": 4.47213595499958,
+	"start": [4, 0],
+	"end": [2, 1],
+	"driverLocation0": [2, 0],
+	"driverLocation1": [2, 1],
+	"D2Balance": 0.0,
+	"D1Balance": 3.3541019662496847,
+	"P1Balance": 95.52786404500043,
+	"P2Balance": 100.0,
+	"D2Rating": 4.0,
+	"D1Rating": 3.735,
+	"tripStatus": "success"
+},
+{
+	"fare": 8.94427190999916,
+	"start": [4, 4],
+	"end": [2, 0],
+	"driverLocation0": [2, 0],
+	"driverLocation1": [2, 0],
+	"D2Balance": 0.0,
+	"D1Balance": 10.062305898749054,
+	"P1Balance": 95.52786404500043,
+	"P2Balance": 91.05572809000084,
+	"D2Rating": 4.0,
+	"D1Rating": 3.4899999999999998,
+	"tripStatus": "success"
+}
