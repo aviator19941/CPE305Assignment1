@@ -1,0 +1,8 @@
+Uber has many shared features with UberEATS. Almost all the
+classes should remain the same because the Customer will 
+represent the Passenger and the Restaurant will be the destination
+that the Customer wants to order food from. The Transactions and 
+Trips will still be calculated a similar way. The Customer will be 
+in a static position, while the Driver will have a Trip from its 
+starting position to the Restaurant the Customer provides and the 
+Customer's static position.
